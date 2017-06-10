@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DescontoImpostoRenda.Aplicacao.ApplicationServices
 {
-    class FaixasSalariaisAppService : AppServiceBase<FaixaSalarial>, IFaixasSalariaisAppService
+    public class FaixasSalariaisAppService : AppServiceBase<FaixaSalarial>, IFaixasSalariaisAppService
     {
         private readonly IFaixasSalariaisService _faixasSalariaisService;
         public FaixasSalariaisAppService(IFaixasSalariaisService faixasSalariais)

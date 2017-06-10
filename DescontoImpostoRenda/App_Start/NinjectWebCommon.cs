@@ -1,5 +1,5 @@
-﻿//[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Vagou.WebService.App_Start.NinjectWebCommon), "Start")]
-//[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Vagou.WebService.App_Start.NinjectWebCommon), "Stop")]
+﻿[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Vagou.WebService.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Vagou.WebService.App_Start.NinjectWebCommon), "Stop")]
 
 namespace Vagou.WebService.App_Start
 {
@@ -11,6 +11,10 @@ namespace Vagou.WebService.App_Start
     using Ninject.Web.Common;
     using DescontoImpostoRenda.Aplicacao.Interfaces;
     using DescontoImpostoRenda.Aplicacao.ApplicationServices;
+    using DescontoImpostoRenda.Dominio.Interfaces.Servicos;
+    using DescontoImpostoRenda.Dominio.Servicos;
+    using DescontoImpostoRenda.Dominio.Interfaces.Respositorios;
+    using DescontoImpostoRenda.Infraestrutura.Data.Repositorios;
 
     public static class NinjectWebCommon
     {
@@ -60,18 +64,17 @@ namespace Vagou.WebService.App_Start
         /// Load your modules or register your services here!
         /// </summary>
         /// <param name="kernel">The kernel.</param>
-        //private static void RegisterServices(IKernel kernel)
-        //{
-        //    kernel.Bind(typeof(IAppServiceBase<>)).To(typeof(AppServiceBase<>));
-        //    kernel.Bind<IFaixasSalariaisAppService>().To<FaixasSalariaisAppService>();
-            
-        //    kernel.Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>));
-        //    kernel.Bind<IFaixasSalariaisService>().To<FaixasSalariaisService>();
+        private static void RegisterServices(IKernel kernel)
+        {
+            kernel.Bind(typeof(IAppServiceBase<>)).To(typeof(AppServiceBase<>));
+            kernel.Bind<IFaixasSalariaisAppService>().To<FaixasSalariaisAppService>();
 
-        //    kernel.Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<>));
-        //    kernel.Bind<IEmpresaRepository>().To<EmpresaRepository>();
+            kernel.Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>));
+            kernel.Bind<IFaixasSalariaisService>().To<FaixasSalariaisService>();
 
+            kernel.Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<>));
+            kernel.Bind<IFaixasSalariaisRepository>().To<FaixasSalariaisRepository>();
 
-        //}
+        }
     }
 }

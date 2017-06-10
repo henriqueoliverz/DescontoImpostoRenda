@@ -5,7 +5,7 @@ using System;
 
 namespace DescontoImpostoRenda.Dominio.Servicos
 {
-    public class FaixasSalariaisService : ServiceBase<FaixaSalarial>, IFaixasSalariaisRepository
+    public class FaixasSalariaisService : ServiceBase<FaixaSalarial>, IFaixasSalariaisService
     {
         private readonly IFaixasSalariaisRepository _faixasSalariaisRepository;
         public FaixasSalariaisService(IFaixasSalariaisRepository faixasSalariaisRepository)
