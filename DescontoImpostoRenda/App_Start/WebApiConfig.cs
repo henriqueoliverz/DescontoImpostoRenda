@@ -16,8 +16,8 @@ namespace DescontoImpostoRenda
 
             config.Routes.MapHttpRoute(
                 name: "ImpostoRenda",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                routeTemplate: "api/salario/imposto-renda/{salario}",
+                defaults: new { controller = "Salario", action = "ImpostoRenda", salario = RouteParameter.Optional }
             );
 
 

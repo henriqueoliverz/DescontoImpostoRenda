@@ -8,7 +8,7 @@ namespace DescontoImpostoRenda.Infraestrutura.Data.Repositorios
     {
         public FaixaSalarial ObterFaixaDoSalario(decimal salario)
         {
-            return DbContext.FaixasSalariais.SingleOrDefault(faixa => faixa.AceitaSalario(salario));
+            return ObterTodos().SingleOrDefault(faixa => faixa.AceitaSalario(salario));
         }
     }
 }

@@ -9,7 +9,7 @@ namespace DescontoImpostoRenda.Infraestrutura.Data.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(DescontoImpostoRendaContext context)

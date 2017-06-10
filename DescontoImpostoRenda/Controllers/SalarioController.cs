@@ -1,13 +1,14 @@
 ﻿using DescontoImpostoRenda.Aplicacao.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Net.Http;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Http;
+using System.Web.Http.Cors;
+using System.Web.Script.Serialization;
 
 namespace DescontoImpostoRenda.Controllers
 {
-    public class SalarioController : Controller
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    public class SalarioController : ApiController
     {
         private readonly IFaixasSalariaisAppService _faixasSalariaisApp;
 
@@ -15,15 +16,17 @@ namespace DescontoImpostoRenda.Controllers
         {
             _faixasSalariaisApp = faixasSalariaisApp;
         }
-
-        [HttpPost]
-        public ActionResult ImpostoRenda(decimal salario)
+        [HttpGet]
+        public HttpResponseMessage ImpostoRenda(decimal salario)
         {
             var faixaSalarial = _faixasSalariaisApp.ObterFaixaDoSalario(salario);
 
             var imposto = faixaSalarial.CalcularImposto(salario);
-            
-            return Json(imposto);
+
+            JavaScriptSerializer serialiser = new JavaScriptSerializer();
+            HttpContext.Current.Response.ContentType = "application/json";
+            HttpContext.Current.Response.Write(serialiser.Serialize(imposto));
+            return new HttpResponseMessage();
         }
     }
 }

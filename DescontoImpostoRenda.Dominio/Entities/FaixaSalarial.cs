@@ -13,9 +13,9 @@ namespace DescontoImpostoRenda.Dominio.Entities
 
         public virtual bool AceitaSalario(decimal salario)
         {
-            return (SalarioMinimo != null || SalarioMaximo != null) &&  
-                (SalarioMinimo == null || salario >= SalarioMinimo) 
-                && (SalarioMaximo == null || salario <= SalarioMaximo);
+            return (this.SalarioMinimo != null || this.SalarioMaximo != null) &&  
+                (this.SalarioMinimo == null || salario >= this.SalarioMinimo) 
+                && (this.SalarioMaximo == null || salario <= this.SalarioMaximo);
         }
 
         public virtual decimal CalcularImposto(decimal salario)
